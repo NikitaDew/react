@@ -1,6 +1,7 @@
+import React, { useEffect, useState } from "react";
 import RestaurantCard from "./RestaurantCard";
-import { useEffect, useState } from "react";
-
+import { Shimmer } from "./Shimmer";
+import { Link } from "react-router-dom";
 const Body = () => {
   const [allRestaurantList, setAllRestaurantList] = useState([]);
   const [filteredRestaurantList, setFilteredRestaurantList] = useState([]);
@@ -38,9 +39,9 @@ const Body = () => {
 
   // if (filteredRestaurantList?.length === 0)
   //   return <h1>No Restaurant match your filter</h1>;
-
-  return filteredRestaurantList?.length === 0 ? (
-    <h1>Shimmer UI is loading.........</h1>
+  console.log("useState() >>>", useState());
+  return allRestaurantList?.length === 0 ? (
+    <Shimmer />
   ) : (
     <div className="body">
       <button className="filterButton" onClick={handleFilterButton}>
@@ -59,7 +60,11 @@ const Body = () => {
       </div>
       <div className="restaurantContainer">
         {filteredRestaurantList?.map((resData) => {
-          return <RestaurantCard key={resData.data.id} resData={resData} />;
+          return (
+            <Link to={"/restaurant/" + resData.data.id} key={resData.data.id}>
+              <RestaurantCard resData={resData} />
+            </Link>
+          );
         })}
       </div>
     </div>

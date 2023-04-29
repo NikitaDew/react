@@ -1,5 +1,5 @@
 import { CART_LOGO, LOGO_URL } from "../utils/constants";
-
+import { Link } from "react-router-dom";
 export const Header = () => {
   return (
     <div className="header">
@@ -8,9 +8,15 @@ export const Header = () => {
       </div>
       <div className="nav-items">
         <ul>
-          <li>Home</li>
-          <li>About Us</li>
-          <li>Contact Us</li>
+          <Link to="/">
+            <li>Home</li>
+          </Link>
+          <Link to="/about">
+            <li>About Us</li>
+          </Link>
+          <li>
+            <Link to="/contact">Contact Us</Link>
+          </li>
           <li>
             <img className="cart" src={CART_LOGO} />
           </li>
