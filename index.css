@@ -272,3 +272,25 @@
   letter-spacing: -0.3px;
   font-size: 1rem;
 }
+
+.searchContainer {
+  padding-bottom: 8px;
+  padding-top: 48px;
+}
+
+.searchInput {
+  /* box-shadow: 0 6px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid gray; */
+  border: 0.5px solid #e9e9eb;
+  box-shadow: 0 1px 5px #f9f9f9;
+  height: 30px;
+  border-radius: 4px;
+  margin-left: 10px;
+  margin-right: 5px;
+}
+.searchButton {
+  border: 0.5px solid #e9e9eb;
+  box-shadow: 0 1px 5px #f9f9f9;
+  height: 30px;
+  border-radius: 4px;
+}

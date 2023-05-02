@@ -18,6 +18,9 @@ export const Header = () => {
             <Link to="/contact">Contact Us</Link>
           </li>
           <li>
+            <Link to="/instaMart">Insta Mart</Link>
+          </li>
+          <li>
             <img className="cart" src={CART_LOGO} />
           </li>
         </ul>

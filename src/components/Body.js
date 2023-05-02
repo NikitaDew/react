@@ -2,9 +2,13 @@ import React, { useEffect, useState } from "react";
 import RestaurantCard from "./RestaurantCard";
 import { Shimmer } from "./Shimmer";
 import { Link } from "react-router-dom";
+import { FETCH_RESTAURANTS_URL } from "../utils/constants";
+import useOnline from "../utils/useOnline";
+import { filterData } from "../utils/helper";
 const Body = () => {
   const [allRestaurantList, setAllRestaurantList] = useState([]);
-  const [filteredRestaurantList, setFilteredRestaurantList] = useState([]);
+  const [filteredRestaurantList, setFilteredRestaurantList] =
+    useState(allRestaurantList);
   const [searchText, setSearchText] = useState("");
 
   useEffect(() => {
@@ -12,49 +16,50 @@ const Body = () => {
   }, []);
 
   async function getRestaurants() {
-    const res = await fetch(
-      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.976888&lng=77.710466&page_type=DESKTOP_WEB_LISTING"
-    );
-    const json = await res.json();
-    setAllRestaurantList(json?.data?.cards[2]?.data?.data?.cards);
-    setFilteredRestaurantList(json?.data?.cards[2]?.data?.data?.cards);
+    try {
+      const res = await fetch(FETCH_RESTAURANTS_URL);
+      const json = await res.json();
+      setAllRestaurantList(json?.data?.cards[2]?.data?.data?.cards);
+      setFilteredRestaurantList(json?.data?.cards[2]?.data?.data?.cards);
+    } catch (e) {
+      console.log(e);
+    }
   }
 
-  const handleFilterButton = () => {
-    const filteredData = allRestaurantList?.filter((res) => {
-      return res?.data?.avgRating >= 4;
-    });
-    setFilteredRestaurantList(filteredData);
-  };
-
-  const handleSearch = () => {
-    const searchedData = allRestaurantList?.filter((res) => {
-      return res?.data?.name?.toLowerCase().includes(searchText.toLowerCase());
-    });
-    setFilteredRestaurantList(searchedData);
-  };
-
+  const isOnline = useOnline();
+  if (!isOnline) {
+    return <h1>🔴 Offline, Please check your internet connection</h1>;
+  }
   // Not rendered component (early return)
   if (!allRestaurantList) return null;
 
-  // if (filteredRestaurantList?.length === 0)
-  //   return <h1>No Restaurant match your filter</h1>;
-  console.log("useState() >>>", useState());
   return allRestaurantList?.length === 0 ? (
     <Shimmer />
   ) : (
     <div className="body">
-      <button className="filterButton" onClick={handleFilterButton}>
+      {/* <button
+        className="filterButton"
+        onClick={() => filterData(searchText, allRestaurantList)}
+      >
         Top Rated Restaurants
-      </button>
+      </button> */}
       <div className="searchContainer">
         <input
+          className="searchInput"
           type="text"
           placeholder="search"
           value={searchText}
           onChange={(e) => setSearchText(e.target.value)}
         />
-        <button className="searchButton" onClick={handleSearch}>
+        <button
+          className="searchButton"
+          onClick={() => {
+            //need to filter the data
+            const data = filterData(searchText, allRestaurantList);
+            // update the state - restaurants
+            setFilteredRestaurantList(data);
+          }}
+        >
           Search
         </button>
       </div>
