@@ -15,52 +15,52 @@ const RestaurantMenu = () => {
   return !restaurant ? (
     <Shimmer />
   ) : (
-    <div className="Restaurantbody_wrapper">
+    <div className="Restaurantbody_wrapper mt-3 mb-3 ml-16 mr-16 ">
       <div className="RestaurantHeader_container">
         <div className="RestaurantHeader_wrapper">
-          <div className="RestaurantNameAddress_wrapper">
+          <div className="RestaurantNameAddress_wrapper flex justify-between mr-4">
             <div>
-              <div className="RestaurantNameAddress_name">
+              <div className="RestaurantNameAddress_name text-2xl font-semibold text-gray-600 mb-2 capitalize">
                 {restaurantInfo?.name}
               </div>
-              <div className="RestaurantNameAddress_cuisines">
+              <div className="RestaurantNameAddress_cuisines text-base text-gray-400 overflow-hidden text-ellipsis mb-1 whitespace-nowrap">
                 {restaurantInfo?.cuisines.join(", ")}
               </div>
             </div>
             <div>
-              <div className="RestaurantRatings_wrapper">
-                <span className="RestaurantRatings_avgRating">
+              <div className="RestaurantRatings_wrapper border-gray-500 border-solid border shadow-md rounded-md text-center p-2 float-right bg-transparent">
+                <span className="RestaurantRatings_avgRating text-gray-600 pb-2 font-bold mb-2 block">
                   <span>{restaurantInfo.avgRating}</span>
                 </span>
-                <span className="RestaurantRatings_totalRatings">
+                <span className="RestaurantRatings_totalRatings text-xs text-gray-500 font-semibold">
                   {restaurantInfo.totalRatingsString}
                 </span>
               </div>
             </div>
           </div>
           <div style={{ display: "flex" }}>
-            <div className="RestaurantNameAddress_area">
+            <div className="RestaurantNameAddress_area text-base text-gray-500">
               {restaurantInfo?.areaName},{" "}
               {restaurantInfo?.sla.lastMileTravelString}
             </div>
           </div>
         </div>
-        <div className="RestaurantMessage_wrapper">
+        <div className="RestaurantMessage_wrapper text-gray-500 flex items-start mb-2 pb-2 border-b border-dashed border-gray-500 ">
           <img
             src="https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_18,h_18/v1648635511/Delivery_fee_new_cjxumu"
             alt="DISTANCE_FEE_NON_FOOD_LM"
             className="RestaurantMessage_icon__1qCvu"
             aria-hidden="true"
           />
-          <span className="RestaurantMessage_text__1k5GF" aria-hidden="true">
+          <span className="text-sm text-gray-500" aria-hidden="true">
             2.7 kms | ₹27 Delivery fee will apply
           </span>
         </div>
-        <div className="RestaurantHeader_marginBottom" aria-hidden="true">
-          <ul className="RestaurantTimeCost_wrapper">
-            <li className="RestaurantTimeCost_item">
+        <div className="RestaurantHeader_marginBottom mb-5" aria-hidden="true">
+          <ul className="RestaurantTimeCost_wrapper text-gray-500 text-base font-bold p-0">
+            <li className="RestaurantTimeCost_item inline-block mr-6">
               <svg
-                className="RestaurantTimeCost_icon"
+                className="RestaurantTimeCost_icon align-bottom mr-2 inline-block"
                 width="18"
                 height="18"
                 viewBox="0 0 18 18"
@@ -80,9 +80,9 @@ const RestaurantMenu = () => {
               </svg>
               <span>21 MINS</span>
             </li>
-            <li className="RestaurantTimeCost_item">
+            <li className="RestaurantTimeCost_item inline-block mr-6">
               <svg
-                className="RestaurantTimeCost_icon"
+                className="RestaurantTimeCost_icon align-bottom mr-3 inline-block"
                 width="18"
                 height="18"
                 viewBox="0 0 18 18"
@@ -110,7 +110,7 @@ const RestaurantMenu = () => {
         {restaurantMenuItems?.map((item) => {
           const itemInfo = item.card?.info;
           return (
-            <div key={itemInfo.id}>
+            <div key={itemInfo.id} className="hover:bg-gray-100">
               <div
                 style={{
                   paddingBottom: "14px",
@@ -119,20 +119,24 @@ const RestaurantMenu = () => {
                 }}
               >
                 <div>
-                  <div className="item_name_text">{itemInfo.name}</div>
+                  <div className="item_name_text mr-1 text-xl font-medium text-gray-600">
+                    {itemInfo.name}
+                  </div>
                   <div style={{ fontSize: "1rem" }}>
                     ₹{itemInfo.price / 100}
                   </div>
-                  <div className="item_Description">{itemInfo.description}</div>
+                  <div className="item_Description mt-3 leading-5 text-gray-500 w-2/3 text-base">
+                    {itemInfo.description}
+                  </div>
                 </div>
                 <div>
                   <img
                     src={CDN_URL + itemInfo.imageId}
-                    className="Item_image"
+                    className="Item_image w-28 h-24 object-cover rounded-md"
                   />
                 </div>
               </div>
-              <div className="divider" />
+              <div className="divider border-b border-solid border-gray-400 h-1 mt-5 mb-5" />
             </div>
           );
         })}

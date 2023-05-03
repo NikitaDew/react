@@ -1,8 +1,10 @@
-.header {
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+/* .header {
   justify-content: space-between;
   display: flex;
   height: 50px;
-  /* border: 1px solid black; */
   -webkit-box-shadow: 0 6px 8px rgba(0, 0, 0, 0.1);
   box-shadow: 0 6px 8px rgba(0, 0, 0, 0.1);
 }
@@ -109,7 +111,6 @@
 }
 .shimmer_container {
   margin: 10;
-  /* border: 1px solid gray; */
   -webkit-box-shadow: 0 6px 8px rgba(0, 0, 0, 0.1);
   box-shadow: 0 6px 8px rgba(0, 0, 0, 0.1);
 }
@@ -158,9 +159,7 @@
   margin: 20 10;
 }
 
-/* .RestaurantNameAddress_wrapper {
-  display: flex;
-} */
+
 .Restaurantbody_wrapper {
   max-width: 800px;
   min-height: 800px;
@@ -279,8 +278,6 @@
 }
 
 .searchInput {
-  /* box-shadow: 0 6px 8px rgba(0, 0, 0, 0.1);
-  border: 1px solid gray; */
   border: 0.5px solid #e9e9eb;
   box-shadow: 0 1px 5px #f9f9f9;
   height: 30px;
@@ -293,4 +290,4 @@
   box-shadow: 0 1px 5px #f9f9f9;
   height: 30px;
   border-radius: 4px;
-}
+} */

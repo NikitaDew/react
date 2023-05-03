@@ -43,16 +43,16 @@ const Body = () => {
       >
         Top Rated Restaurants
       </button> */}
-      <div className="searchContainer">
+      <div className="searchContainer p-5">
         <input
-          className="searchInput"
+          className="searchInput border rounded-sm px-3 focus:bg-green-50 focus:border-green-300"
           type="text"
           placeholder="search"
           value={searchText}
           onChange={(e) => setSearchText(e.target.value)}
         />
         <button
-          className="searchButton"
+          className="searchButton px-3 mx-5 border rounded-sm hover:bg-green-100 hover:border-green-300"
           onClick={() => {
             //need to filter the data
             const data = filterData(searchText, allRestaurantList);
@@ -63,7 +63,7 @@ const Body = () => {
           Search
         </button>
       </div>
-      <div className="restaurantContainer">
+      <div className="restaurantContainer flex flex-wrap">
         {filteredRestaurantList?.map((resData) => {
           return (
             <Link to={"/restaurant/" + resData.data.id} key={resData.data.id}>

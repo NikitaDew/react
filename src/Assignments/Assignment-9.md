@@ -1,5 +1,13 @@
 # when and why to use lazy() in react js
 
+//Chunking
+// Code Splitting
+//Dynamic Bundling
+//Lazy loading
+//On Demand loading
+//dynamic import
+//Always lozy load on the top not inside the component
+
 ## Code Splitting
 
 Bundling is great, but as your app grows, your bundle will grow too. Especially if you are including large third-party libraries. You need to keep an eye on the code you are including in your bundle so that you don’t accidentally make it so large that your app takes a long time to load.
