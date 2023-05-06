@@ -1,4 +1,4 @@
-import React, { Suspense, lazy } from "react";
+import React, { Suspense, lazy, useState } from "react";
 import ReactDOM from "react-dom/client";
 import Header from "./components/Header";
 import Body from "./components/Body";
@@ -9,6 +9,8 @@ import Contact from "./components/Contact";
 import RestaurantMenu from "./components/RestaruantMenu";
 import Profile from "./components/Profile";
 import { Shimmer } from "./components/Shimmer";
+import { useContext } from "react";
+import UserContext from "./utils/UserContext";
 //import InstaMart from "./components/InstaMart";
 
 //Chunking
@@ -22,10 +24,17 @@ const InstaMart = lazy(() => import("./components/InstaMart"));
 
 //upon on demand loading --> upon rending --> suspend render
 const AppLayout = () => {
+  const [user, setUser] = useState({
+    name: "Akshay Saini",
+    email: "support@namastedev.com",
+  });
+  console.log(user);
   return (
     <div className="app">
-      <Header />
-      <Outlet />
+      <UserContext.Provider value={{ user: user, setUser: setUser }}>
+        <Header />
+        <Outlet />
+      </UserContext.Provider>
       {/* <Body /> */}
     </div>
   );
