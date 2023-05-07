@@ -2,7 +2,7 @@ import { useState, useContext } from "react";
 import UserContext from "../utils/UserContext";
 
 const Section = ({ title, isVisible, setIsVisible }) => {
-  console.log(useContext(UserContext));
+  console.log("useContext", useContext(UserContext));
   return (
     <div className="border border-solid p-3 m-3">
       <h1 className="font-bold ">{title}</h1>

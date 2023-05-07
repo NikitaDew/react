@@ -11,6 +11,9 @@ import Profile from "./components/Profile";
 import { Shimmer } from "./components/Shimmer";
 import { useContext } from "react";
 import UserContext from "./utils/UserContext";
+import { Provider, useSelector } from "react-redux";
+import store from "./utils/store";
+import Cart from "./components/Cart";
 //import InstaMart from "./components/InstaMart";
 
 //Chunking
@@ -28,13 +31,15 @@ const AppLayout = () => {
     name: "Akshay Saini",
     email: "support@namastedev.com",
   });
-  console.log(user);
+
   return (
     <div className="app">
-      <UserContext.Provider value={{ user: user, setUser: setUser }}>
-        <Header />
-        <Outlet />
-      </UserContext.Provider>
+      <Provider store={store}>
+        <UserContext.Provider>
+          <Header />
+          <Outlet />
+        </UserContext.Provider>
+      </Provider>
       {/* <Body /> */}
     </div>
   );
@@ -76,6 +81,10 @@ const appRouter = createBrowserRouter([
             <InstaMart />
           </Suspense>
         ),
+      },
+      {
+        path: "/cart",
+        element: <Cart />,
       },
     ],
   },
