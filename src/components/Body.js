@@ -45,6 +45,7 @@ const Body = () => {
       </button> */}
       <div className="searchContainer p-5">
         <input
+          data-testid="search-input"
           className="searchInput border rounded-sm px-3 focus:bg-green-50 focus:border-green-300"
           type="text"
           placeholder="search"
@@ -52,6 +53,7 @@ const Body = () => {
           onChange={(e) => setSearchText(e.target.value)}
         />
         <button
+          data-testid="search-btn"
           className="searchButton px-3 mx-5 border rounded-sm hover:bg-green-100 hover:border-green-300"
           onClick={() => {
             //need to filter the data
@@ -63,7 +65,10 @@ const Body = () => {
           Search
         </button>
       </div>
-      <div className="restaurantContainer flex flex-wrap">
+      <div
+        className="restaurantContainer flex flex-wrap"
+        data-testid="res-list"
+      >
         {filteredRestaurantList?.map((resData) => {
           return (
             <Link to={"/restaurant/" + resData.data.id} key={resData.data.id}>

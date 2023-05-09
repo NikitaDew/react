@@ -111,7 +111,7 @@ const RestaurantMenu = () => {
           </ul>
         </div>
       </div>
-      <div>
+      <div data-testid="menu">
         {restaurantMenuItems?.map((item) => {
           const itemInfo = item.card?.info;
           return (
@@ -140,6 +140,7 @@ const RestaurantMenu = () => {
                     className="Item_image w-28 h-24 object-cover rounded-md"
                   />
                   <button
+                    data-testid="addBtn"
                     className="m-2 p-1 bg-green-100"
                     onClick={() => handleAddItem(itemInfo)}
                   >
